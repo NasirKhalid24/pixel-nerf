@@ -11,7 +11,7 @@ class CO3DDataset(torch.utils.data.Dataset):
     """
 
     def __init__(
-        self, path, stage="train", image_size=256, world_scale=1.0, category="plant", z_near=1.2, z_far=4.0,
+        self, path, stage="train", image_size=256, world_scale=1.0, category="plant", z_near=1.0, z_far=10.0,
     ):
         """
         :param stage train | val | test
