@@ -53,10 +53,33 @@ class CO3DDataset(torch.utils.data.Dataset):
             load_point_clouds=False,
         )
 
-        self.all_objs = list(self.dataset.seq_annots.keys())
+        if stage == "train":
+            self.all_objs = []
+            p = os.path.join(self.path, self.category, "train.lst")
+            with open(p, "r") as file:
+                for line in file: 
+                    line = line.strip()
+                    if line != "":
+                        self.all_objs.append(line)
+        elif stage == "val":
+            self.all_objs = []
+            p = os.path.join(self.path, self.category, "val.lst")
+            with open(p, "r") as file:
+                for line in file: 
+                    line = line.strip()
+                    if line != "":
+                        self.all_objs.append(line)
+        elif stage == "test":
+            self.all_objs = []
+            p = os.path.join(self.path, self.category, "val.lst")
+            with open(p, "r") as file:
+                for line in file: 
+                    line = line.strip()
+                    if line != "":
+                        self.all_objs.append(line)
 
     def __len__(self):
-        return len(self.dataset)
+        return len(self.all_objs)
 
     def __getitem__(self, index):
         
