@@ -51,6 +51,7 @@ class CO3DDataset(torch.utils.data.Dataset):
             image_width=self.image_size,
             box_crop=True,
             load_point_clouds=False,
+            remove_empty_masks=True,
         )
 
         if stage == "train":
