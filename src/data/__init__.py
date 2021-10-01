@@ -3,7 +3,7 @@ import os
 from .MultiObjectDataset import MultiObjectDataset
 from .DVRDataset import DVRDataset
 from .SRNDataset import SRNDataset
-
+from .CO3DDataset import CO3DDataset
 from .data_util import ColorJitterDataset
 
 
@@ -25,6 +25,8 @@ def get_split_dataset(dataset_type, datadir, want_split="all", training=True, **
     elif dataset_type == "multi_obj":
         # For multiple-object
         dset_class = MultiObjectDataset
+    elif dataset_type == "co3d":
+        dset_class = CO3DDataset
     elif dataset_type.startswith("dvr"):
         # For ShapeNet 64x64
         dset_class = DVRDataset

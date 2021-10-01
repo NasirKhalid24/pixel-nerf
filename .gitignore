@@ -22,3 +22,6 @@ __pycache__/
 checkpoints/
 visuals/
 logs/
+
+# Custom 2.0
+temp
