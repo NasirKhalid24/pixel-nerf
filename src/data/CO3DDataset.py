@@ -11,7 +11,7 @@ class CO3DDataset(torch.utils.data.Dataset):
     """
 
     def __init__(
-        self, path, dataset, stage="train", image_size=256, world_scale=1.0, category="plant", z_near=1.0, z_far=10.0,
+        self, path, dataset, stage="train", image_size=256, world_scale=1.0, category="plant", z_near=1.0, z_far=10.0, **kwargs
     ):
         """
         :param stage train | val | test
@@ -39,8 +39,8 @@ class CO3DDataset(torch.utils.data.Dataset):
             torch.tensor([-1, 1, 1, 1], dtype=torch.float32) # flip pytorch axis (-x, y, z) to (x, y, z)
         )
 
-        frame_file = os.path.join(self.path, self.category, "frame_annotations.jgz")
-        sequence_file = os.path.join(self.path, self.category, "sequence_annotations.jgz")
+        # frame_file = os.path.join(self.path, self.category, "frame_annotations.jgz")
+        # sequence_file = os.path.join(self.path, self.category, "sequence_annotations.jgz")
         self.image_size = image_size
         self.lindisp = False
 

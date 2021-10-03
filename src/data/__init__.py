@@ -27,17 +27,21 @@ def get_split_dataset(dataset_type, datadir, want_split="all", training=True, **
         dset_class = MultiObjectDataset
     elif dataset_type == "co3d":
 
-        frame_file = os.path.join(datadir, "plant", "frame_annotations.jgz")
-        sequence_file = os.path.join(datadir, "plant", "sequence_annotations.jgz")
+        frame_file = os.path.join(datadir, kwargs["category"], "frame_annotations.jgz")
+        sequence_file = os.path.join(datadir, kwargs["category"], "sequence_annotations.jgz")
+        set_lists = os.path.join(datadir, kwargs["category"], "set_lists.json")
         dataset = Co3dDataset(
             frame_annotations_file=frame_file,
             sequence_annotations_file=sequence_file,
+            subset_lists_file=set_lists,
             dataset_root=datadir,
             image_height=128,
             image_width=128,
             box_crop=True,
             load_point_clouds=False,
             remove_empty_masks=False,
+            seed=0,
+            n_frames_per_sequence=int(kwargs['nviews'])
         )
 
         dset_class = CO3DDataset

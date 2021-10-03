@@ -32,12 +32,17 @@ def extra_args(parser):
         help="Number of source views (multiview); put multiple (space delim) to pick randomly per batch ('NV')",
     )
     parser.add_argument(
+        "--category",
+        type=str,
+        default="plant",
+        help="CO3D Dataset class",
+    )
+    parser.add_argument(
         "--freeze_enc",
         action="store_true",
         default=None,
         help="Freeze encoder weights and only train MLP",
     )
-
     parser.add_argument(
         "--no_bbox_step",
         type=int,
@@ -56,11 +61,14 @@ def extra_args(parser):
 args, conf = util.args.parse_args(extra_args, training=True, default_ray_batch_size=128)
 device = util.get_cuda(args.gpu_id[0])
 
-dset, val_dset, _ = get_split_dataset(args.dataset_format, args.datadir)
+if args.dataset_format == "co3d":
+    dset, val_dset, _ = get_split_dataset(args.dataset_format, args.datadir, category=args.category, nviews=args.nviews)
+else:
+    dset, val_dset, _ = get_split_dataset(args.dataset_format, args.datadir)
 print(
     "dset z_near {}, z_far {}, lindisp {}".format(dset.z_near, dset.z_far, dset.lindisp)
 )
-
+asdas = dset[0]
 net = make_model(conf["model"]).to(device=device)
 net.stop_encoder_grad = args.freeze_enc
 if args.freeze_enc:
