@@ -256,8 +256,7 @@ class PixelNeRFTrainer(trainlib.Trainer):
 
         curr_nviews = nviews[torch.randint(0, len(nviews), (1,)).item()]
         views_src = np.sort(np.random.choice(NV, curr_nviews, replace=False))
-        # view_dest = np.random.randint(0, NV - curr_nviews)
-        view_dest = np.random.randint(0, NV-1)
+        view_dest = np.random.randint(0, NV - curr_nviews)
         for vs in range(curr_nviews):
             view_dest += view_dest >= views_src[vs]
         views_src = torch.from_numpy(views_src)
