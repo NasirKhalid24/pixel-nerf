@@ -101,7 +101,7 @@ class CO3DDataset(torch.utils.data.Dataset):
 
         for d in dataset_index:
             
-            all_imgs.append(d.image_rgb)
+            all_imgs.append( (d.image_rgb - 0.5) / 0.5  )
             all_masks.append(d.depth_mask)
             all_depth.append(d.depth_map)
             

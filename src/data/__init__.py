@@ -70,16 +70,31 @@ def get_split_dataset(dataset_type, datadir, want_split="all", training=True, **
     want_val = want_split != "train" and want_split != "test"
     want_test = want_split != "train" and want_split != "val"
 
-    if want_train:
-        train_set = dset_class(datadir, stage="train", **flags, **kwargs, dataset=dataset)
-        if train_aug is not None:
-            train_set = train_aug(train_set, **train_aug_flags)
+    if dataset_type == "co3d":
 
-    if want_val:
-        val_set = dset_class(datadir, stage="val", **flags, **kwargs, dataset=dataset)
+        if want_train:
+            train_set = dset_class(datadir, stage="train", **flags, **kwargs, dataset=dataset)
+            if train_aug is not None:
+                train_set = train_aug(train_set, **train_aug_flags)
 
-    if want_test:
-        test_set = dset_class(datadir, stage="test", **flags, **kwargs, dataset=dataset)
+        if want_val:
+            val_set = dset_class(datadir, stage="val", **flags, **kwargs, dataset=dataset)
+
+        if want_test:
+            test_set = dset_class(datadir, stage="test", **flags, **kwargs, dataset=dataset)
+
+    else:
+
+        if want_train:
+            train_set = dset_class(datadir, stage="train", **flags, **kwargs)
+            if train_aug is not None:
+                train_set = train_aug(train_set, **train_aug_flags)
+
+        if want_val:
+            val_set = dset_class(datadir, stage="val", **flags, **kwargs)
+
+        if want_test:
+            test_set = dset_class(datadir, stage="test", **flags, **kwargs)
 
     if want_split == "train":
         return train_set
