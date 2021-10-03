@@ -41,7 +41,7 @@ def get_split_dataset(dataset_type, datadir, want_split="all", training=True, **
             load_point_clouds=False,
             remove_empty_masks=False,
             seed=0,
-            n_frames_per_sequence=int(kwargs['nviews'])
+            n_frames_per_sequence=20
         )
 
         dset_class = CO3DDataset

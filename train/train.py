@@ -62,7 +62,7 @@ args, conf = util.args.parse_args(extra_args, training=True, default_ray_batch_s
 device = util.get_cuda(args.gpu_id[0])
 
 if args.dataset_format == "co3d":
-    dset, val_dset, _ = get_split_dataset(args.dataset_format, args.datadir, category=args.category, nviews=args.nviews)
+    dset, val_dset, _ = get_split_dataset(args.dataset_format, args.datadir, category=args.category)
 else:
     dset, val_dset, _ = get_split_dataset(args.dataset_format, args.datadir)
 print(
