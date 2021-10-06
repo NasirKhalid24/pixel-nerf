@@ -144,6 +144,7 @@ class CO3DDataset(torch.utils.data.Dataset):
 
         result = {
             "path": self.path,
+            "img_group": self.all_objs[index],
             "img_id": index,
             "focal": focal,
             "c": c,

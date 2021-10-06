@@ -221,6 +221,7 @@ class Trainer:
                             import imageio
 
                             vis_u8 = (vis * 255).astype(np.uint8)
+                            self.writer.add_image("{:04}_{:04}_vis.png".format(epoch, batch), vis_u8, global_step=step_id, dataformats='HWC')
                             imageio.imwrite(
                                 os.path.join(
                                     self.visual_path,

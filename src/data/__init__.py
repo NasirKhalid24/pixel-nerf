@@ -37,11 +37,11 @@ def get_split_dataset(dataset_type, datadir, want_split="all", training=True, **
             dataset_root=datadir,
             image_height=128,
             image_width=128,
-            box_crop=True,
+            box_crop=False,
             load_point_clouds=False,
             remove_empty_masks=False,
             seed=0,
-            n_frames_per_sequence=20
+            n_frames_per_sequence=10
         )
 
         dset_class = CO3DDataset
@@ -124,7 +124,6 @@ import random
 from typing import List, Optional, Union, Tuple
 import warnings
 import json
-
 import numpy as np
 from PIL import Image
 from plyfile import PlyData  # TODO: get rid of it after pt3d supports loading normals
@@ -132,7 +131,6 @@ import torch
 
 from pytorch3d.renderer.cameras import CamerasBase, PerspectiveCameras
 from pytorch3d.structures.pointclouds import Pointclouds
-
 
 @dataclass
 class FrameData:

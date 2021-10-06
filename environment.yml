@@ -2,6 +2,7 @@
 name: pixelnerf
 channels:
   - pytorch
+  - pytorch3d
   - defaults
 dependencies:
   - python>=3.8
@@ -16,7 +17,9 @@ dependencies:
       - ipdb
       - pretrainedmodels
       - lpips
+      - plyfile
   - scipy
+  - pytorch3d
   - numpy
   - matplotlib
   - pytorch==1.6.0
